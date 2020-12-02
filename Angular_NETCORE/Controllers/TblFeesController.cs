@@ -11,48 +11,48 @@ namespace Angular_NETCORE.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class Tbl_UserController : ControllerBase
+    public class TblFeesController : ControllerBase
     {
         private readonly test_coreContext _context;
 
-        public Tbl_UserController(test_coreContext context)
+        public TblFeesController(test_coreContext context)
         {
             _context = context;
         }
 
-        // GET: api/Tbl_User
+        // GET: api/TblFees
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Tbl_User>>> GetTbl_Users()
+        public async Task<ActionResult<IEnumerable<TblFee>>> GetTblFees()
         {
-            return await _context.Tbl_Users.ToListAsync();
+            return await _context.TblFees.ToListAsync();
         }
 
-        // GET: api/Tbl_User/5
+        // GET: api/TblFees/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Tbl_User>> GetTbl_User(int id)
+        public async Task<ActionResult<TblFee>> GetTblFee(int id)
         {
-            var tbl_User = await _context.Tbl_Users.FindAsync(id);
+            var tblFee = await _context.TblFees.FindAsync(id);
 
-            if (tbl_User == null)
+            if (tblFee == null)
             {
                 return NotFound();
             }
 
-            return tbl_User;
+            return tblFee;
         }
 
-        // PUT: api/Tbl_User/5
+        // PUT: api/TblFees/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutTbl_User(int id, Tbl_User tbl_User)
+        public async Task<IActionResult> PutTblFee(int id, TblFee tblFee)
         {
-            if (id != tbl_User.UserId)
+            if (id != tblFee.FeeId)
             {
                 return BadRequest();
             }
 
-            _context.Entry(tbl_User).State = EntityState.Modified;
+            _context.Entry(tblFee).State = EntityState.Modified;
 
             try
             {
@@ -60,7 +60,7 @@ namespace Angular_NETCORE.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!Tbl_UserExists(id))
+                if (!TblFeeExists(id))
                 {
                     return NotFound();
                 }
@@ -73,37 +73,37 @@ namespace Angular_NETCORE.Controllers
             return NoContent();
         }
 
-        // POST: api/Tbl_User
+        // POST: api/TblFees
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<Tbl_User>> PostTbl_User(Tbl_User tbl_User)
+        public async Task<ActionResult<TblFee>> PostTblFee(TblFee tblFee)
         {
-            _context.Tbl_Users.Add(tbl_User);
+            _context.TblFees.Add(tblFee);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetTbl_User", new { id = tbl_User.UserId }, tbl_User);
+            return CreatedAtAction("GetTblFee", new { id = tblFee.FeeId }, tblFee);
         }
 
-        // DELETE: api/Tbl_User/5
+        // DELETE: api/TblFees/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<Tbl_User>> DeleteTbl_User(int id)
+        public async Task<ActionResult<TblFee>> DeleteTblFee(int id)
         {
-            var tbl_User = await _context.Tbl_Users.FindAsync(id);
-            if (tbl_User == null)
+            var tblFee = await _context.TblFees.FindAsync(id);
+            if (tblFee == null)
             {
                 return NotFound();
             }
 
-            _context.Tbl_Users.Remove(tbl_User);
+            _context.TblFees.Remove(tblFee);
             await _context.SaveChangesAsync();
 
-            return tbl_User;
+            return tblFee;
         }
 
-        private bool Tbl_UserExists(int id)
+        private bool TblFeeExists(int id)
         {
-            return _context.Tbl_Users.Any(e => e.UserId == id);
+            return _context.TblFees.Any(e => e.FeeId == id);
         }
     }
 }

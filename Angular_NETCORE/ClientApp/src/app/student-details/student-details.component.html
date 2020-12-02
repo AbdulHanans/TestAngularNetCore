@@ -1,0 +1,45 @@
+
+
+<main>
+  <button class="btn btn-primary" type="button" routerLink="../">Back</button>
+
+  <table class="table" style="width:85%; margin:2%; scrollbar-darkshadow-color:ActiveBorder;">
+
+    <!-- Position Column -->
+    <!--<thead class="thead-dark">
+    
+    </thead>-->
+    <tbody>
+    
+      <tr><th scope="col"> Serial No.  </th></tr>
+      <tr><td scope="row" *ngFor="let item of studentD">{{ item.studentId }}</td></tr>
+
+      <tr><th scope="col"> Admission No  </th></tr>
+      <tr><td *ngFor="let item of studentD">{{ item.admissionNo }}</td></tr>
+
+      <tr><th scope="col"> Student Name  </th></tr>
+      <tr><td *ngFor="let item of studentD">{{ item.studentName }}</td></tr>
+
+      <tr><th scope="col"> Father Name   </th></tr>
+      <tr><td *ngFor="let item of studentD">{{ item.fatherName }}</td></tr>
+
+      <tr><th scope="col"> Father CNIC   </th></tr>
+      <tr><td *ngFor="let item of studentD">{{ item.fatherCnic }}</td></tr>
+
+      <tr><th scope="col"> Date Of Birth   </th></tr>
+      <tr><td *ngFor="let item of studentD">{{ item.dateOfBirth }}</td></tr>
+
+      <tr><th scope="col"> Mobile Number   </th></tr>
+      <tr><td *ngFor="let item of studentD">{{ item.mobileNumber }}</td></tr>
+
+      <tr><th scope="col"> Land Line Number  </th></tr>
+      <tr><td *ngFor="let item of studentD">{{ item.landLineNumber }}</td></tr>
+
+      <tr><th scope="col"> Address   </th></tr>
+      <tr><td *ngFor="let item of studentD">{{ item.address }}</td></tr>
+    
+
+    </tbody>
+  </table>
+
+  </main>

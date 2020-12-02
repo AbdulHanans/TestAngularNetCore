@@ -1,0 +1,72 @@
+
+
+  <main style="width:100%;">
+    <h1 style="text-align:center;">Class Wise Students</h1>
+
+    <div style="text-align:center;">
+      <p>Select Class:</p>
+
+
+
+      <select #ClassName (click)="changeValue(ClassName, ClassName.value)">
+        <option value="0">--Select Class--</option>
+        <option *ngFor="let class of classesD" value="{{ class.classId }}">{{ class.className }}</option>
+      </select>
+
+
+
+
+      <table class="table" style="width:85%; margin:2%; scrollbar-darkshadow-color:ActiveBorder;">
+
+        <!-- Position Column -->
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col"> Serial No.	 </th>
+
+            <th scope="col"> Admission No	 </th>
+
+            <th scope="col"> Student Name	 </th>
+
+            <th scope="col"> Father Name	 </th>
+
+            <th scope="col"> Father CNIC	 </th>
+
+            <th scope="col"> Date Of Birth	 </th>
+
+            <th scope="col"> Mobile Number	 </th>
+
+            <th scope="col"> Land Line Number	 </th>
+
+            <th scope="col"> Address	 </th>
+
+            <th scope="col"> Actions </th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of classD">
+            <th scope="row">{{ item.studentId }}</th>
+            <td>{{ item.admissionNo }}</td>
+            <td>{{ item.studentName }}</td>
+            <td>{{ item.fatherName }}</td>
+            <td>{{ item.fatherCnic }}</td>
+            <td>{{ item.dateOfBirth }}</td>
+            <td>{{ item.mobileNumber }}</td>
+            <td>{{ item.landLineNumber }}</td>
+            <td>{{ item.address }}</td>
+            <td>
+              <button type="button" class="btn btn-success" (click)="studentDetails(item.studentId)" value="Details"> Details </button>
+              <button type="button" (click)="editStudent(item.studentId)" class="btn btn-primary" value="Edit"> &nbsp;&nbsp;Edit &nbsp;&nbsp;</button>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+
+
+
+
+    </div>
+   
+  </main>
+

@@ -24,25 +24,31 @@ export class LoginComponent implements OnInit {
   });
 
   onSubmit() {
-    const user: string = this.userDetailsDM[0].userName;
-    const pass: string = this.userDetailsDM[0].userPassword;
-    if (this.username.value == undefined || this.password.value == undefined) {
-      alert("Please Fill all required Fields!");
-    } else {
-      if (user === this.username.value && pass === this.password.value) {
-        /*this.http.post<any[]>(this.baseUrl + 'api/Get/UserDetails', this.userDetails).subscribe(result => {
-          result = JSON.parse(result.toString());
-          if (result != null && result.length > 0) {
-           */
-        this.router.navigate(['/home']);
-        //alert("Successfully Logged in!");
+
+    for (let ii = 0; ii < this.userDetailsDM['length']; ii++) {
+      const user: string = this.userDetailsDM[ii].userName;
+      const pass: string = this.userDetailsDM[ii].userPassword;
+      if (this.username.value == undefined || this.password.value == undefined) {
+        alert("Please Fill all required Fields!");
       } else {
-        alert("Please Enter a valid Username or Password!");
-        //connection string Server=DESKTOP-3H036CO\SQLEXPRESS;Database=test_core;Trusted_Connection=True;
+        if (user === this.username.value && pass === this.password.value) {
+          /*this.http.post<any[]>(this.baseUrl + 'api/Get/UserDetails', this.userDetails).subscribe(result => {
+            result = JSON.parse(result.toString());
+            if (result != null && result.length > 0) {
+             */
+          this.router.navigate(['/home']);
+          window.location.assign('http://localhost:63619/students');
+          //alert("Successfully Logged in!");
+        } else {
+          if (ii === this.userDetailsDM['length'] - 1) {
+            alert("Please Enter a valid Username or Password!");
+          }
+          //connection string Server=DESKTOP-3H036CO\SQLEXPRESS;Database=test_core;Trusted_Connection=True;
+        }
       }
+      console.log('USERNAME', user);
+      console.log('PASSWORD', pass);
     }
-    console.log('USERNAME', user);
-    console.log('PASSWORD', pass);
 
   }
 

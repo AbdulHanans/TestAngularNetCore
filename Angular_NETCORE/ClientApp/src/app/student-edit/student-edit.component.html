@@ -1,0 +1,100 @@
+<main>
+  <form #StudentEditForm class="edit-form" *ngFor="let item of studentD" >
+    <div class="container" >
+      <div class="col-lg-5 col-custom-class" >
+        <div class="form-group row">
+          <label for="AdmissionNo" class="col-form-label">Admission No.:</label>
+          <input #AdmissionNo type="text" id="AdmissionNo" class="input" placeholder="Admission No." value="{{ item.admissionNo }}" readonly />
+        </div>
+
+        <div class="form-group row">
+          <label for="FatherName" class="col-form-label">Father Name:</label>
+          <input #FatherName type="text" id="FatherName" class="input" placeholder="Father Name" value="{{ item.fatherName }}" />
+        </div>
+
+        <div class="form-group row">
+          <label for="DateOfBirth">Date Of Birth:</label>
+          <input #DateOfBirth type="text" id="DateOfBirth" class="input" placeholder="Date Of Birth" value="{{ item.dateOfBirth }}" />
+        </div>
+
+        <div class="form-group row">
+          <label for="LandLineNumber">LandLineNumber:</label>
+          <input #LandLineNumber type="text" id="LandLineNumber" class="input" placeholder="Landline Number" value="{{ item.landLineNumber }}" />
+        </div>
+
+        <div class="form-group row">
+          <label for="CurrentClass">Current Class:</label>
+          <input #CurrentClass type="text" id="CurrentClass" class="input" placeholder="Current Class" value="{{ item.currentClass }}" />
+        </div>
+
+        <div class="form-group row">
+          <label for="Address">Address:</label>
+          <input #Address type="text" id="Address" class="input" placeholder="Address" value="{{ item.address }}" />
+        </div>
+
+        <div class="form-group row">
+          <label for="SLCIssued">SLC Issued:</label>
+          <input #SLCIssued type="text" id="SLCIssued" class="input" placeholder="SLC Issued" value="{{ item.slcIssued }}" />
+        </div>
+
+        <div class="form-group row">
+          <label for="AdmissionFee">Admission Fee:</label>
+          <input #AdmissionFee type="text" id="AdmissionFee" class="input" placeholder="Admission Fee" value="{{ item.admissionFee }}" />
+        </div>
+
+      </div>
+
+      <div class="col-lg-5 col-custom-class" >
+        <div class="form-group row">
+          <label for="StudentName">Student Name:</label>
+          <input #StudentName formControlName="StudentName" type="text" id="StudentName" class="input" placeholder="Student Name" value="{{ item.studentName }}" [ngClass]="{ 'is-invalid': submitted && f.StudentName.errors }" />
+          <div *ngIf="submitted && f.StudentName.errors" class="invalid-feedback">
+            <div *ngIf="f.StudentName.errors.required">StudentName is required</div>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="FatherCNIC">Father CNIC:</label>
+          <input #FatherCNIC type="text" id="FatherCNIC" class="input" placeholder="FatherCNIC" value="{{ item.fatherCnic }}" />
+        </div>
+
+        <div class="form-group row">
+          <label for="MobileNumber">Mobile Number:</label>
+          <input #MobileNumber type="text" id="MobileNumber" class="input" placeholder="Mobile Number" value="{{ item.mobileNumber }}" />
+        </div>
+
+        <div class="form-group row">
+          <label for="ClassAdmited">Class Admited:</label>
+          <input #ClassAdmited type="text" id="ClassAdmited" class="input" placeholder="Class Admited" value="{{ item.classAdmited }}" />
+        </div>
+
+        <div class="form-group row">
+          <label for="MonthlyFee">Monthly Fee:</label>
+          <input #MonthlyFee type="text" id="MonthlyFee" class="input" placeholder="Monthly Fee" value="{{ item.monthlyFee }}" />
+        </div>
+
+        <div class="form-group row">
+          <label for="MiscellaneousFund">Miscellaneous Fund:</label>
+          <input #MiscellaneousFund type="text" id="MiscellaneousFund" class="input" placeholder="Miscellaneous Fund" value="{{ item.miscellaneousFund }}" />
+        </div>
+
+        <div class="form-group row">
+          <label for="DateOfSlc">Date Of SLC:</label>
+          <input #DateOfSlc type="text" id="DateOfSlc" class="input" placeholder="Date Of SLC" value="{{ item.dateOfSlc }}" />
+        </div>
+
+      
+    </div>
+    </div>
+    <div class="container-fluid row edit-form">
+      <a class="btn btn-success" (click)="update(StudentEditForm)">Update</a>
+      <a class="btn btn-danger">Cancel</a>
+      <a class="btn btn-primary">Back</a>
+      <a class="btn btn-warning">Open Monthly Fee</a>
+    </div>
+
+  </form>
+
+
+
+</main>

@@ -88,7 +88,11 @@ export class UpdateComponent implements OnInit {
       this.userData.IsEnable = this.userD['isEnable'];
       console.log('dt', this.userD['isEnable'] + " is");
     } else {
-      this.userData.IsEnable = this.updateForm.controls['IsEnable'].value;
+      if (this.updateForm.controls['IsEnable'].value === 'true') {
+        this.userData.IsEnable = true;  
+      } else if (this.updateForm.controls['IsEnable'].value === 'false') {
+        this.userData.IsEnable = false;
+      }
       console.log('dt', this.updateForm.controls['IsEnable'].value);
     }
 

@@ -26,19 +26,19 @@ export class UserDetailsService {
   }
 
   getUsersDetails(): Observable<any> {
-    return this.httpObj.get(this.baseUrl + "api/Tbl_User");
+    return this.httpObj.get(this.baseUrl + "api/TblUsers");
   }
 
   createUser(userDetails: UserDetailsDataModel): Observable<any> {
     console.log('UserDetailsDAta', userDetails.UserName);
-    return this.httpObj.post(this.appUrl + "api/Tbl_User", userDetails, this.httpOptions);
+    return this.httpObj.post(this.appUrl + "api/TblUsers", userDetails, this.httpOptions);
   }
 
   updateUser(userDetails: UserDetailsDataModel): Observable<any> {
     console.log('UserDetailsDAta', JSON.stringify(userDetails));
 
     const body = {
-      "UserId": parseInt(userDetails.UserId),
+      "UserId": userDetails.UserId,
       "userName": userDetails.UserName,
       "FatherName": userDetails.FatherName,
       "UserPassword": userDetails.UserPassword,
@@ -50,14 +50,14 @@ export class UserDetailsService {
     /*
     return this.httpObj.put<UserDetailsDataModel>(this.baseUrl + "api/Put/UpdateUser", body, {headers, params});*/
 
-    return this.httpObj.put(this.appUrl + "api/Tbl_User/" + 1, body, this.httpOptionsPut);
+    return this.httpObj.put(this.appUrl + "api/TblUsers/" + 1, body, this.httpOptionsPut);
 
    // return this.httpObj.put<UserDetailsDataModel>(this.appUrl + "api/Put/UpdateUser", JSON.stringify(userDetails)).map((response: Response) => response.json()).catch(this.errorHandler);  
   }
 
   deleteUser(userId: string) {
-    console.log('del', this.appUrl + "api/Tbl_User/" + parseInt(userId));
-    return this.httpObj.delete(this.appUrl + "api/Tbl_User/" + parseInt(userId)); 
+    console.log('del', this.appUrl + "api/TblUsers/" + parseInt(userId));
+    return this.httpObj.delete(this.appUrl + "api/TblUsers/" + parseInt(userId)); 
   }
   errorHandler(error: Response) {
     console.log(error);
@@ -67,11 +67,12 @@ export class UserDetailsService {
 }
 
 export class UserDetailsDataModel {
-  UserId: string;
+  UserId: number;
   UserName: string;
   FatherName: string;
   UserPassword: string;
   UserRole: string;
   FirstName: string;
   IsEnable: boolean;
+
 }

@@ -10,7 +10,6 @@ import { UserDetailsDataModel, UserDetailsService } from '../../Services/userDet
 export class RegisterComponent {
 
   registerForm: FormGroup = new FormGroup({
-    UserID: new FormControl(),
     UserName: new FormControl(),
     FatherName: new FormControl(),
     /*password: new FormControl(),
@@ -49,7 +48,13 @@ UserID: number;
       IsEnable: string;
 */
     this.crudService.createUser(this.userData).subscribe(res => {
+      if (res !== undefined || res !== null) {
         console.log('User is Created Successfully!');
+        this.router.navigate(['/login']);
+      } else {
+        console.log('Unable to Create a New User!');
+      }
+
       });
     
   }

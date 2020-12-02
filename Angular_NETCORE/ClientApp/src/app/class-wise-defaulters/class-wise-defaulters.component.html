@@ -1,0 +1,14 @@
+<main style="width:100%;">
+  <h1 style="text-align:center;">Class Wise Defaulters List</h1>
+
+  <div style="text-align:center;">
+    <p>Select Class:</p>
+
+
+
+    <select #ClassName (click)="changeValue(ClassName, ClassName.value)">
+      <option value="0">--Select Class--</option>
+      <option *ngFor="let class of classesD" value="{{ class.classId }}">{{ class.className }}</option>
+    </select>
+  </div>
+</main>

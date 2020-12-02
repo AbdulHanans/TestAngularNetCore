@@ -1,0 +1,101 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+               [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+               [mode]="(isHandset$ | async) ? 'over' : 'side'"
+               [opened]="(isHandset$ | async) === false">
+    <mat-toolbar>Menu</mat-toolbar>
+
+    <!-- <mat-nav-list>
+    <select    routerLink="/students">
+        <option mat-list-item routerLink="/students">Students</option>
+        <option mat-list-item  routerLink="/{{subItem}}">{{ subItem | titlecase }}</option>
+      </select>
+
+
+    <a mat-list-item routerLink="/information">
+      Information
+
+    </a>
+
+
+    <a mat-list-item routerLink="/reports">
+      Reports
+    </a>
+
+
+    <a mat-list-item routerLink="/logout">
+      Logout
+    </a>
+  </mat-nav-list>-->
+    <!--<nav>
+    <ul mat-list-item>
+      <li class="dropdown-toggle">
+        <span routerLink="/students">Students</span>
+        <ul id="students-submenu" class="dropdown">
+          <li mat-list-item  routerLink="/{{subItem}}"><span>{{ subItem | titlecase }}</span></li>
+
+        </ul>
+      </li>
+      <li mat-list-item routerLink="/information">
+        <span>
+          Information
+        </span>
+      </li>
+
+      <li mat-list-item routerLink="/reports">
+        <span>
+
+          Reports
+        </span>
+      </li>
+      <li mat-list-item routerLink="/logout">
+        <span>
+
+          Logout
+        </span>
+      </li>
+    </ul>
+  </nav>-->
+    
+  <div class="sidenav">
+    <a mat-menu-item (click)="showStudentsDropdown()" class="dropdown-btn" routerLink="/students">Students<mat-icon style="vertical-align:middle;">expand_more</mat-icon></a>
+
+    <div mat-menu-item *ngIf="!isStudentsHidden" class="dropdown-container">
+
+      <a mat-menu-item routerLink="students/student-registration">Student Registration</a>
+      <a mat-menu-item routerLink="/students">View Students</a>
+      <a mat-menu-item routerLink="/search-students">Search Students</a>
+      <a mat-menu-item routerLink="/promote-students">Promote Students</a>
+      <a mat-menu-item routerLink="students/view-old-students">View Old Students</a>
+    </div>
+    <a mat-menu-item (click)="showInformationDropdown()" class="dropdown-btn">Information<mat-icon style="vertical-align:middle;">expand_more</mat-icon></a>
+    <div mat-menu-item *ngIf="!isInformationHidden" class="dropdown-container">
+
+      <a mat-menu-item routerLink="../students">View Students</a>
+      <a mat-menu-item routerLink="information/class-wise-defaulters">Class Wise Defaulters List</a>
+      <a mat-menu-item routerLink="information/misc-fee-defaulters">Misc Fee Defaulters List</a>
+    </div>
+    <a routerLink="/reports">Reports</a>
+    <a routerLink="/logout">Logout</a>
+  </div>
+
+
+
+  </mat-sidenav>
+  <mat-sidenav-content style="width: 100%;">
+    <mat-toolbar>
+      <button type="button"
+              aria-label="Toggle sidenav"
+              mat-icon-button
+              (click)="drawer.toggle();"
+              *ngIf="isHandset$ | async">
+        <!--drawer.toggle()-->
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+
+    </mat-toolbar>
+
+    <router-outlet></router-outlet>
+    <!-- Add Content Here -->
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,106 @@
+<main>
+  <form #registrationForm [formGroup]="StudentRegistrationForm" class="register-form" >
+    <div class="container">
+      <div class="col-lg-5 col-custom-class">
+        <div class="form-group row">
+          <label for="AdmissionNo" class="col-form-label">Admission No.:</label>
+          <input #AdmissionNo type="text" formControlName="AdmissionNo" id="AdmissionNo" class="input" placeholder="Admission No." value="" />
+        </div>
+
+        <div class="form-group row">
+          <label for="FatherName" class="col-form-label">Father Name:</label>
+          <input #FatherName type="text" formControlName="FatherName" id="FatherName" class="input" placeholder="Father Name" value="" />
+        </div>
+
+        <div class="form-group row">
+          <label for="DateOfBirth">Date Of Birth:</label>
+          <input #DateOfBirth type="text" formControlName="DateOfBirth" id="DateOfBirth" class="input" placeholder="Date Of Birth" value="" />
+        </div>
+
+        <div class="form-group row">
+          <label for="LandLineNumber">LandLineNumber:</label>
+          <input #LandLineNumber type="text" formControlName="LandLineNumber" id="LandLineNumber" class="input" placeholder="Landline Number" value="" />
+        </div>
+
+        <div class="form-group row">
+          <label for="CurrentClass">Current Class:</label>
+          <select #CurrentClass type="text" formControlName="CurrentClass" id="CurrentClass" class="input" placeholder="Current Class" value="">
+            <option value="0">--Select Class--</option>
+            <option *ngFor="let class of classesData" value="{{ class.classId }}">{{ class.className }}</option>
+          </select>
+</div>
+
+        <div class="form-group row">
+          <label for="Address">Address:</label>
+          <input #Address type="text" formControlName="Address" id="Address" class="input" placeholder="Address" value="" />
+        </div>
+
+        <div class="form-group row">
+          <label for="SLCIssued">SLC Issued:</label>
+          <input #SLCIssued type="text" formControlName="SLCIssued" id="SLCIssued" class="input" placeholder="SLC Issued" value="" />
+        </div>
+
+        <div class="form-group row">
+          <label for="AdmissionFee">Admission Fee:</label>
+          <input #AdmissionFee type="text" formControlName="AdmissionFee" id="AdmissionFee" class="input" placeholder="Admission Fee" value="" />
+        </div>
+
+      </div>
+
+      <div class="col-lg-5 col-custom-class">
+        <div class="form-group row">
+          <label for="StudentName">Student Name:</label>
+          <input #StudentName formControlName="StudentName" type="text" id="StudentName" class="input" placeholder="Student Name" [ngClass]="{ 'is-invalid': submitted && f.StudentName.errors }" />
+          <div *ngIf="submitted && f.StudentName.errors" class="invalid-feedback">
+            <div *ngIf="f.StudentName.errors.required">StudentName is required</div>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label for="FatherCNIC">Father CNIC:</label>
+          <input #FatherCNIC type="text" formControlName="FatherCNIC" id="FatherCNIC" class="input" placeholder="FatherCNIC" value="" />
+        </div>
+
+        <div class="form-group row">
+          <label for="MobileNumber">Mobile Number:</label>
+          <input #MobileNumber type="text" formControlName="MobileNumber" id="MobileNumber" class="input" placeholder="Mobile Number" value="" />
+        </div>
+
+        <div class="form-group row">
+          <label for="ClassAdmited">Class Admited:</label>
+          <select #ClassAdmited type="text" formControlName="ClassAdmited" id="ClassAdmited" class="input" >
+            <option value="0">--Select Class--</option>
+            <option *ngFor="let class of classesData" value="{{ class.classId }}">{{ class.className }}</option>
+          </select>
+        </div>
+
+        <div class="form-group row">
+          <label for="MonthlyFee">Monthly Fee:</label>
+          <input #MonthlyFee type="text" formControlName="MonthlyFee" id="MonthlyFee" class="input" placeholder="Monthly Fee" value="" />
+        </div>
+
+        <div class="form-group row">
+          <label for="MiscellaneousFund">Miscellaneous Fund:</label>
+          <input #MiscellaneousFund type="text" formControlName="MiscellaneousFund" id="MiscellaneousFund" class="input" placeholder="Miscellaneous Fund" value="" />
+        </div>
+
+        <div class="form-group row">
+          <label for="DateOfSlc">Date Of SLC:</label>
+          <input #DateOfSlc type="text" formControlName="DateOfSlc" id="DateOfSlc" class="input" placeholder="Date Of SLC" value="" />
+        </div>
+
+
+      </div>
+    </div>
+    <div class="container-fluid row register-form">
+      <a class="btn btn-success" (click)="register()">Register</a>
+      <a class="btn btn-danger" routerLink="../">Cancel</a>
+      <!--<a class="btn btn-primary">Back</a>
+      <a class="btn btn-warning">Open Monthly Fee</a>-->
+    </div>
+
+  </form>
+
+
+
+</main>

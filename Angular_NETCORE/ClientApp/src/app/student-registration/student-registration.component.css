@@ -1,0 +1,21 @@
+.col-custom-class {
+  float: left !important;
+  width: 45%;
+}
+
+  .col-custom-class .input {
+    width: 100% !important;
+    float: left;
+    margin: 10px;
+    padding: 10px;
+  }
+
+.register-form {
+  width: 60%;
+  margin: auto;
+  padding: 20px;
+  align-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: azure;
+}
