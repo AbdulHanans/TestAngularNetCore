@@ -1,5 +1,7 @@
+
+
 <main style="width:100%;">
-  <h1 style="text-align:center;">Class Wise Defaulters List</h1>
+  <h1 style="text-align:center;">Promote Students</h1>
 
   <div style="text-align:center;">
     <p>Select Class:</p>
@@ -12,18 +14,9 @@
     </select>
 
 
-    <p>Select Session:</p>
 
 
-
-    <select #SessionDropdown (click)="changeValueSession(SessionDropdown, SessionDropdown.value)">
-      <option value="0">--Select Session--</option>
-      <option *ngFor="let session of sessionsD" value="{{ session.sessionId }}">{{ session.sessionName }}</option>
-    </select>
-
-
-
-    <table class="table" style="width:85%; margin:2%; scrollbar-darkshadow-color:ActiveBorder;">
+    <table class="table table-striped table-bordered table-sm" id="promote-table" datatable [dtOptions]="dtOptions" cellspacing="0" style="width:85%; margin:2%; scrollbar-darkshadow-color:ActiveBorder;">
 
       <!-- Position Column -->
       <thead class="thead-dark">
@@ -62,13 +55,17 @@
           <td>{{ item.landLineNumber }}</td>
           <td>{{ item.address }}</td>
           <td>
-            <button type="button" class="btn btn-success" (click)="studentDetails(item.studentId)" value="Details"> Details </button>
-            <button type="button" (click)="editStudent(item.studentId)" class="btn btn-primary" value="Edit"> &nbsp;&nbsp;Edit &nbsp;&nbsp;</button>
+            <button type="button" class="btn btn-warning" (click)="studentDetails(item.studentId)" value="Details"> Fee Details </button>
           </td>
         </tr>
 
       </tbody>
     </table>
 
+
+
+
   </div>
+  
 </main>
+

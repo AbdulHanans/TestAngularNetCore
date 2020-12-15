@@ -19,3 +19,19 @@
   text-align: center;
   background-color: azure;
 }
+
+mat-form-field input {
+    position:relative;
+    width: 70%;
+    float: left;
+    height: 30px;
+}
+
+.dates-pickers, .dates-pickers button, .dates-pickers button span {
+  position: relative;
+  padding: 0px !important;
+  margin: 0px auto;
+  float: left !important;
+  width: 40px !important;
+  height: 40px;
+}

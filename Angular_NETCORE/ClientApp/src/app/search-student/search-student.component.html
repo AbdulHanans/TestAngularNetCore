@@ -1,0 +1,96 @@
+<main>
+  <div class="container">
+    <h2>Dynamic Pills</h2>
+    <p>To make the tabs toggleable, add the data-toggle="pill" attribute to each link. Then add a .tab-pane class with a unique ID for every tab and wrap them inside a div element with class .tab-content.</p>
+    <ul class="nav nav-tabs">
+      <li class="active"><a data-toggle="tab" href="#search-cnic">Search By Father CNIC</a></li>
+      <li><a data-toggle="tab" href="#search-mobile-number">Search By Mobile Number</a></li>
+      <li><a data-toggle="tab" href="#search-admission-number">Search By Admission Number</a></li>
+    </ul>
+    <br/>
+
+    <div class="tab-content">
+      <div id="search-cnic" class="tab-pane active">
+        
+        <div class="search-box">
+          <h3>Search By Father CNIC</h3>
+          <form action="/action_page.php">
+            <input #searchByCNIC type="text" placeholder="Please CNIC Number Here!" id="searchByCNIC" name="searchByCNIC">
+            <button type="submit" (click)="searchStudent(searchByCNIC.value, true, false, false);"><i class="fa fa-search"></i></button>
+          </form>
+        </div>
+      </div>
+      <div id="search-mobile-number" class="tab-pane">
+        
+        <div class="search-box">
+          <h3>Search By Mobile Number</h3>
+          <form action="/action_page.php">
+            <input #searchByMobileNumber type="text" placeholder="Please Mobile Number Here!" id="searchByMobileNumber" name="searchByMobileNumber">
+            <button type="submit" (click)="searchStudent(searchByMobileNumber.value, false, true, false);"><i class="fa fa-search"></i></button>
+          </form>
+        </div>
+      </div>
+      <div id="search-admission-number" class="tab-pane">
+        
+        <div class="search-box">
+          <h3>Search By Admission Number</h3>
+          <form action="/action_page.php">
+            <input #searchByAdmissionNumber type="text" placeholder="Please Admission Number Here!" id="searchByAdmissionNumber" name="searchByAdmissionNumber">
+            <button type="submit" (click)="searchStudent(searchByAdmissionNumber.value, false, false, true);"><i class="fa fa-search"></i></button>
+          </form>
+        </div>
+      </div>
+      
+    </div>
+
+
+    <div class="container-fluid">
+      <table class="table" style="width:85%; margin:2%; scrollbar-darkshadow-color:ActiveBorder;">
+
+        <!-- Position Column -->
+        <thead class="thead-dark">
+          <tr *ngIf="showTh">
+            <th scope="col"> Serial No.	 </th>
+
+            <th scope="col"> Admission No	 </th>
+
+            <th scope="col"> Student Name	 </th>
+
+            <th scope="col"> Father Name	 </th>
+
+            <th scope="col"> Father CNIC	 </th>
+
+            <th scope="col"> Date Of Birth	 </th>
+
+            <th scope="col"> Mobile Number	 </th>
+
+            <th scope="col"> Land Line Number	 </th>
+
+            <th scope="col"> Address	 </th>
+
+            <th scope="col"> Actions </th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of studentsD">
+            <th scope="row">{{ item.studentId }}</th>
+            <td>{{ item.admissionNo }}</td>
+            <td>{{ item.studentName }}</td>
+            <td>{{ item.fatherName }}</td>
+            <td>{{ item.fatherCnic }}</td>
+            <td>{{ item.dateOfBirth }}</td>
+            <td>{{ item.mobileNumber }}</td>
+            <td>{{ item.landLineNumber }}</td>
+            <td>{{ item.address }}</td>
+            <td>
+              <button type="button" *ngIf="showButtons" class="btn btn-success" (click)="studentDetails(item.studentId)" value="Details"> Details </button>
+              <button type="button" *ngIf="showButtons" (click)="editStudent(item.studentId)" class="btn btn-primary" value="Edit"> &nbsp;&nbsp;Edit &nbsp;&nbsp;</button>
+            </td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>

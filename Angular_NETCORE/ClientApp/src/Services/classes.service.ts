@@ -17,8 +17,7 @@ export class ClassesService {
   };
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Accept': 'application/json'
+      'Content-Type': 'application/json'
     })
   };
 
@@ -42,8 +41,17 @@ export class ClassesService {
     return this.httpObj.get(this.baseUrl + "api/TblStudents/" + studentId);
   }
 
+  getSessions(): Observable<any> {
+    return this.httpObj.get(this.baseUrl + "api/TblSessions");
+  }
+
+  addNewClass(classDetails: any): Observable<any> {
+    console.log('classsd', classDetails);
+    return this.httpObj.post(this.baseUrl + "api/TblClasses", classDetails, this.httpOptions).pipe();
+  }
+
   registerStudent(studentDetails: any): Observable<any> {
-    return this.httpObj.post(this.baseUrl + "api/TblStudents", studentDetails, this.httpOptions);
+    return this.httpObj.post(this.baseUrl + "api/TblStudents", studentDetails, this.httpOptions).pipe();
   }
 
   updateStudent(studentDetails: StudentDetailsModel): Observable<any> {
@@ -64,7 +72,13 @@ export class ClassesService {
 }
 
 export class ClassesDataModel {
-  ClassId: number;
-  ClassName: string;
-  Priority: number;
+  classId: number;
+  className: string;
+  priority: number;
 }
+
+export class InsertClassesDataModel {
+  className: string;
+  priority: number;
+}
+

@@ -16,6 +16,10 @@ export class ClassWiseDefaultersComponent implements OnInit {
 
   classD = [];
 
+  sessionsD = [];
+  sessionObjM = new Object();
+  sessionObjC = new Object();
+
   obj: any = new Object();
   objC: Object = new Object();
 
@@ -24,6 +28,7 @@ export class ClassWiseDefaultersComponent implements OnInit {
 
   ngOnInit() {
     this.getClasses();
+    this.getSessions();
     console.log("classes", this.classesD);
   }
 
@@ -38,7 +43,8 @@ export class ClassWiseDefaultersComponent implements OnInit {
   }
 
 
-  getClass(cId: number) {
+  getClass(cId: number, sessionId: number) {
+    console.log('cl', cId + " \ " + sessionId);
 
     this.serviceFee.getFees().subscribe((data) => {
 
@@ -46,8 +52,13 @@ export class ClassWiseDefaultersComponent implements OnInit {
       this.objC.forEach((data) => {
 
         this.obj = [{ data }] as Object;
-         this.obj.forEach((data) => {
-          console.log('fe', data);
+        this.obj.forEach((data) => {
+          //if (data.classId === cId && data.sessionId === sessionId) {
+          this.sessionObjM.forEach((ds) => {
+            console.log('fe', ds);
+          });
+            
+          //}
         });
         
         /*this.serviceClasses.getStudents().subscribe((stData) => {
@@ -66,13 +77,34 @@ export class ClassWiseDefaultersComponent implements OnInit {
     });
   }
 
+  classID = 0;
 
   changeValue(event: HTMLElement, value) {
     console.log('changedValueIS', value);
     if (value != 0) {
-      this.getClass(value);
+      this.classID = value;
       console.log('singleClass', this.classD);
     }
+  }
+
+  changeValueSession(event: HTMLElement, value) {
+    if (value != 0) {
+      //this.getSessions();
+      this.getClass(this.classID, value);
+      console.log('changedSessionValueIS', value);
+    }
+  }
+
+  getSessions() {
+    this.serviceClasses.getSessions().subscribe((data) => {
+      //this.classesD = data;
+      this.sessionObjM = data;
+      this.sessionObjM.forEach((data) => {
+        if (data.isEnable = true) {
+          this.sessionsD.push(data);
+        }
+      });
+    });
   }
 
 

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ClassesService } from '../../Services/classes.service';
-import { StudentDetailsModel } from '../students/students.component';
+import { InsertStudentDetailsModel } from '../students/students.component';
 
 @Component({
   selector: 'app-student-registration',
@@ -11,13 +11,12 @@ import { StudentDetailsModel } from '../students/students.component';
 })
 export class StudentRegistrationComponent implements OnInit {
 
-  studentData: StudentDetailsModel = new StudentDetailsModel();
+  studentData: InsertStudentDetailsModel = new InsertStudentDetailsModel();
 
   obj: any = new Object();
   classesData = [];
 
   StudentRegistrationForm: FormGroup = new FormGroup({
-    StudentId: new FormControl(),
     StudentName: new FormControl(),
     FatherName: new FormControl(),
     AdmissionNo: new FormControl(),
@@ -68,10 +67,9 @@ export class StudentRegistrationComponent implements OnInit {
   }
 
   register() {
-    this.studentData.StudentId = null;
     this.studentData.StudentName = this.StudentRegistrationForm.controls['StudentName'].value;
     this.studentData.FatherName = this.StudentRegistrationForm.controls['FatherName'].value;
-    this.studentData.FatherCnic = parseInt(this.StudentRegistrationForm.controls['FatherCNIC'].value);
+    this.studentData.FatherCnic = this.StudentRegistrationForm.controls['FatherCNIC'].value;
     this.studentData.MobileNumber = this.StudentRegistrationForm.controls['MobileNumber'].value;
     this.studentData.LandLineNumber = this.StudentRegistrationForm.controls['LandLineNumber'].value;
     this.studentData.AdmissionNo = this.StudentRegistrationForm.controls['AdmissionNo'].value;
@@ -89,7 +87,7 @@ export class StudentRegistrationComponent implements OnInit {
     this.studentData.SessionLeftSchool = 2020;
     this.studentData.MonthlyFeeUpdated = true;
     this.studentData.DeletedBy = null;
-    this.studentData.UpdatedDate = this.StudentRegistrationForm.controls['DateOfSlc'].value;
+    this.studentData.UpdatedDate = new Date(this.StudentRegistrationForm.controls['DateOfSlc'].value);
     this.studentData.ClassLeftSchool = 26;
 
 

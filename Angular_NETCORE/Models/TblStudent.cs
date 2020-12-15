@@ -7,13 +7,6 @@ namespace Angular_NETCORE.Models
 {
     public partial class TblStudent
     {
-        public TblStudent()
-        {
-            TblFees = new HashSet<TblFee>();
-            TblMiscFees = new HashSet<TblMiscFee>();
-        }
-
-        public int StudentId { get; set; }
         public string AdmissionNo { get; set; }
         public string StudentName { get; set; }
         public string FatherName { get; set; }
@@ -36,11 +29,6 @@ namespace Angular_NETCORE.Models
         public int? LeftBy { get; set; }
         public int? UpdatedBy { get; set; }
         public decimal? AdmissionFee { get; set; }
-
-        public virtual TblClass ClassAdmitedNavigation { get; set; }
-        public virtual TblClass ClassLeftSchoolNavigation { get; set; }
-        public virtual TblClass CurrentClassNavigation { get; set; }
-        public virtual ICollection<TblFee> TblFees { get; set; }
-        public virtual ICollection<TblMiscFee> TblMiscFees { get; set; }
+        public int StudentId { get; set; }
     }
 }

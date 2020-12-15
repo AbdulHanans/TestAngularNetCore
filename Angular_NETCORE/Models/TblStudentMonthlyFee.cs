@@ -15,8 +15,5 @@ namespace Angular_NETCORE.Models
         public bool? IsEnabled { get; set; }
         public int? CreatedBy { get; set; }
         public DateTime? CreatedDate { get; set; }
-
-        public virtual TblSession Session { get; set; }
-        public virtual TblStudent Student { get; set; }
     }
 }

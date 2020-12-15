@@ -18,6 +18,7 @@ export class NavComponent {
 
   isStudentsHidden: boolean = true;
   isInformationHidden: boolean = true;
+  isClassHidden: boolean = true;
 
   constructor(private breakpointObserver: BreakpointObserver) {}
 
@@ -31,5 +32,9 @@ export class NavComponent {
 
   showInformationDropdown() {
     this.isInformationHidden = !this.isInformationHidden;
+  }
+
+  showClassDropdown() {
+    this.isClassHidden = !this.isClassHidden;
   }
 }

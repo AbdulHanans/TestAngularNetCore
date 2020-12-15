@@ -20,10 +20,5 @@ namespace Angular_NETCORE.Models
         public int? DeletedBy { get; set; }
         public decimal? MonthlyBalance { get; set; }
         public int? MonthlyFee { get; set; }
-
-        public virtual TblUser CollectedByNavigation { get; set; }
-        public virtual TblUser DeletedByNavigation { get; set; }
-        public virtual TblSession Session { get; set; }
-        public virtual TblStudent Student { get; set; }
     }
 }

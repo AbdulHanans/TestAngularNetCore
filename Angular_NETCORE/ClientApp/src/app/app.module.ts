@@ -22,6 +22,10 @@ import { FeeComponent } from './fee/fee.component';
 import { ReportsComponent } from './reports/reports.component';
 import { StudentsModule } from './students/students.module';
 import { InformationModule } from './information/information.module';
+import { ClassesModule } from './classes/classes.module';
+import { ClassesComponent } from './classes/classes.component';
+import { AddClassComponent } from './add-class/add-class.component';
+import { DataTablesModule } from 'angular-datatables';
 
 
 @NgModule({
@@ -35,7 +39,8 @@ import { InformationModule } from './information/information.module';
     
     InformationComponent,
     FeeComponent,
-    ReportsComponent
+    ReportsComponent,
+    ClassesComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -47,6 +52,7 @@ import { InformationModule } from './information/information.module';
     FormsModule,
     ReactiveFormsModule,
     ChartsModule,
+    DataTablesModule,
     RouterModule.forRoot([
       { path: '', component: LoginComponent, pathMatch: 'full' },
       { path: 'login', component: LoginComponent },
@@ -56,14 +62,19 @@ import { InformationModule } from './information/information.module';
       { path: 'home', component: StudentsComponent },
 
       { path: 'students', component: StudentsComponent, loadChildren: './students/students.module#StudentsModule' },
-      { path: 'information', component: InformationComponent },
+      /*{ path: 'information', component: InformationComponent },
       { path: 'fee', component: FeeComponent },
       { path: 'reports', component: ReportsComponent },
-      { path: 'logout', component: LoginComponent },
+      { path: 'logout', component: LoginComponent },*/
+      { path: 'classes', component: ClassesComponent, loadChildren: './classes/classes.module#ClassesModule' },
+      /*{ path: 'add-class', component: AddClassComponent },*/
+
+
     ]),
     BrowserAnimationsModule,
     StudentsModule,
-    InformationModule
+    InformationModule,
+    ClassesModule
   ],
   providers: [],
   bootstrap: [AppComponent]

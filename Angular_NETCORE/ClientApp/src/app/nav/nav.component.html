@@ -57,26 +57,34 @@
     </ul>
   </nav>-->
     
-  <div class="sidenav">
-    <a mat-menu-item (click)="showStudentsDropdown()" class="dropdown-btn" routerLink="/students">Students<mat-icon style="vertical-align:middle;">expand_more</mat-icon></a>
+  <div class="sidenav nav-pills">
+    <a mat-menu-item (click)="showStudentsDropdown()" class="dropdown-btn pill" routerLink="/students">Students<mat-icon style="vertical-align:middle;">expand_more</mat-icon></a>
 
     <div mat-menu-item *ngIf="!isStudentsHidden" class="dropdown-container">
 
       <a mat-menu-item routerLink="students/student-registration">Student Registration</a>
       <a mat-menu-item routerLink="/students">View Students</a>
-      <a mat-menu-item routerLink="/search-students">Search Students</a>
-      <a mat-menu-item routerLink="/promote-students">Promote Students</a>
+      <a mat-menu-item routerLink="students/search-student">Search Students</a>
+      <a mat-menu-item routerLink="students/promote-student">Promote Students</a>
       <a mat-menu-item routerLink="students/view-old-students">View Old Students</a>
     </div>
-    <a mat-menu-item (click)="showInformationDropdown()" class="dropdown-btn">Information<mat-icon style="vertical-align:middle;">expand_more</mat-icon></a>
+    <a mat-menu-item (click)="showInformationDropdown()" class="dropdown-btn pill">Information<mat-icon style="vertical-align:middle;">expand_more</mat-icon></a>
     <div mat-menu-item *ngIf="!isInformationHidden" class="dropdown-container">
 
       <a mat-menu-item routerLink="../students">View Students</a>
       <a mat-menu-item routerLink="information/class-wise-defaulters">Class Wise Defaulters List</a>
       <a mat-menu-item routerLink="information/misc-fee-defaulters">Misc Fee Defaulters List</a>
     </div>
-    <a routerLink="/reports">Reports</a>
-    <a routerLink="/logout">Logout</a>
+
+    <a mat-menu-item (click)="showClassDropdown()" class="dropdown-btn pill">Class<mat-icon style="vertical-align:middle;">expand_more</mat-icon></a>
+    <div mat-menu-item *ngIf="!isClassHidden" class="dropdown-container">
+      <a mat-menu-item routerLink="../classes">View Class</a>
+      <a mat-menu-item routerLink="../classes/add-class">Add New Class</a>
+
+    </div>
+
+    <a routerLink="/reports" class="pill">Reports</a>
+    <a routerLink="/logout" class="pill">Logout</a>
   </div>
 
 

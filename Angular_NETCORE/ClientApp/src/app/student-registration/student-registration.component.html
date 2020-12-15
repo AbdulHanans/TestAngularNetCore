@@ -13,8 +13,15 @@
         </div>
 
         <div class="form-group row">
-          <label for="DateOfBirth">Date Of Birth:</label>
-          <input #DateOfBirth type="text" formControlName="DateOfBirth" id="DateOfBirth" class="input" placeholder="Date Of Birth" value="" />
+
+          <mat-form-field appearance="fill">
+            <mat-label for="DateOfBirth">Date Of Birth:</mat-label>
+            <input matInput [matDatepicker]="pickerBirth" #DateOfBirth id="DateOfBirth" formControlName="DateOfBirth" placeholder="Date Of Birth" value="">
+            <mat-datepicker-toggle matSuffix [for]="pickerBirth" class="dates-pickers" ></mat-datepicker-toggle>
+            <mat-datepicker #pickerBirth></mat-datepicker>
+          </mat-form-field>
+
+<!--          <input #DateOfBirth type="text" formControlName="DateOfBirth" id="DateOfBirth" class="input" placeholder="Date Of Birth" value="" />-->
         </div>
 
         <div class="form-group row">
@@ -37,7 +44,10 @@
 
         <div class="form-group row">
           <label for="SLCIssued">SLC Issued:</label>
-          <input #SLCIssued type="text" formControlName="SLCIssued" id="SLCIssued" class="input" placeholder="SLC Issued" value="" />
+          <select #SLCIssued type="text" formControlName="SLCIssued" id="SLCIssued" class="input" placeholder="SLC Issued" >
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+            </select>
         </div>
 
         <div class="form-group row">
@@ -85,8 +95,15 @@
         </div>
 
         <div class="form-group row">
-          <label for="DateOfSlc">Date Of SLC:</label>
-          <input #DateOfSlc type="text" formControlName="DateOfSlc" id="DateOfSlc" class="input" placeholder="Date Of SLC" value="" />
+          <mat-form-field appearance="fill">
+            <mat-label for="DateOfSlc">Date Of SLC:</mat-label>
+            <input matInput [matDatepicker]="pickerSlc" #DateOfSlc type="text" formControlName="DateOfSlc" id="DateOfSlc" class="input" placeholder="Date Of SLC" value="">
+            <mat-datepicker-toggle matSuffix [for]="pickerSlc" class="dates-pickers"></mat-datepicker-toggle>
+            <mat-datepicker #pickerSlc></mat-datepicker>
+          </mat-form-field>
+
+          <!-- <label for="DateOfSlc">Date Of SLC:</label>
+          <input #DateOfSlc type="text" formControlName="DateOfSlc" id="DateOfSlc" class="input" placeholder="Date Of SLC" value="" /> -->
         </div>
 
 

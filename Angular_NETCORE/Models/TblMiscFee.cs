@@ -15,9 +15,5 @@ namespace Angular_NETCORE.Models
         public int? CollectedBy { get; set; }
         public string Deleted { get; set; }
         public int? DeletedBy { get; set; }
-
-        public virtual TblUser CollectedByNavigation { get; set; }
-        public virtual TblSession Session { get; set; }
-        public virtual TblStudent Student { get; set; }
     }
 }

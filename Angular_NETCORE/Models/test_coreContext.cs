@@ -17,6 +17,7 @@ namespace Angular_NETCORE.Models
         {
         }
 
+        public virtual DbSet<Sysdiagram> Sysdiagrams { get; set; }
         public virtual DbSet<TblClass> TblClasses { get; set; }
         public virtual DbSet<TblFee> TblFees { get; set; }
         public virtual DbSet<TblMiscFee> TblMiscFees { get; set; }
@@ -31,12 +32,34 @@ namespace Angular_NETCORE.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=test_core;Data Source=DESKTOP-3H036CO\\SQLEXPRESS");
+                optionsBuilder.UseSqlServer("Server=DESKTOP-3H036CO\\SQLEXPRESS;Database=test_core;Trusted_Connection=True;");
             }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
+
+            modelBuilder.Entity<Sysdiagram>(entity =>
+            {
+                entity.HasNoKey();
+
+                entity.ToTable("sysdiagrams");
+
+                entity.Property(e => e.Definition).HasColumnName("definition");
+
+                entity.Property(e => e.DiagramId).HasColumnName("diagram_id");
+
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasMaxLength(128)
+                    .HasColumnName("name");
+
+                entity.Property(e => e.PrincipalId).HasColumnName("principal_id");
+
+                entity.Property(e => e.Version).HasColumnName("version");
+            });
+
             modelBuilder.Entity<TblClass>(entity =>
             {
                 entity.HasKey(e => e.ClassId);
@@ -54,7 +77,8 @@ namespace Angular_NETCORE.Models
 
             modelBuilder.Entity<TblFee>(entity =>
             {
-                entity.HasKey(e => e.FeeId);
+                entity.HasKey(e => e.FeeId)
+                    .HasName("PK__Tbl_Fee__B387B209C0BE6406");
 
                 entity.ToTable("Tbl_Fee");
 
@@ -65,7 +89,6 @@ namespace Angular_NETCORE.Models
                 entity.Property(e => e.Deleted)
                     .HasMaxLength(10)
                     .IsUnicode(false)
-                    .HasDefaultValueSql("('N')")
                     .IsFixedLength(true);
 
                 entity.Property(e => e.FeeMonth)
@@ -81,31 +104,12 @@ namespace Angular_NETCORE.Models
                     .HasColumnName("monthlyBalance");
 
                 entity.Property(e => e.StudentId).HasColumnName("StudentID");
-
-                entity.HasOne(d => d.CollectedByNavigation)
-                    .WithMany(p => p.TblFeeCollectedByNavigations)
-                    .HasForeignKey(d => d.CollectedBy)
-                    .HasConstraintName("FK_Tbl_Fee_Tbl_User");
-
-                entity.HasOne(d => d.DeletedByNavigation)
-                    .WithMany(p => p.TblFeeDeletedByNavigations)
-                    .HasForeignKey(d => d.DeletedBy)
-                    .HasConstraintName("FK_Tbl_Fee_Tbl_User1");
-
-                entity.HasOne(d => d.Session)
-                    .WithMany(p => p.TblFees)
-                    .HasForeignKey(d => d.SessionId)
-                    .HasConstraintName("FK_Tbl_Fee_Tbl_Session");
-
-                entity.HasOne(d => d.Student)
-                    .WithMany(p => p.TblFees)
-                    .HasForeignKey(d => d.StudentId)
-                    .HasConstraintName("FK_Tbl_Fee_Tbl_Student");
             });
 
             modelBuilder.Entity<TblMiscFee>(entity =>
             {
-                entity.HasKey(e => e.MiscFeeId);
+                entity.HasKey(e => e.MiscFeeId)
+                    .HasName("PK__Tbl_Misc__39AAE53FA96961DA");
 
                 entity.ToTable("Tbl_MiscFee");
 
@@ -116,33 +120,17 @@ namespace Angular_NETCORE.Models
                 entity.Property(e => e.Deleted)
                     .IsRequired()
                     .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .HasDefaultValueSql("('N')");
+                    .IsUnicode(false);
 
                 entity.Property(e => e.SessionId).HasColumnName("SessionID");
 
                 entity.Property(e => e.StudentId).HasColumnName("StudentID");
-
-                entity.HasOne(d => d.CollectedByNavigation)
-                    .WithMany(p => p.TblMiscFees)
-                    .HasForeignKey(d => d.CollectedBy)
-                    .HasConstraintName("FK_Tbl_MiscFee_Tbl_User");
-
-                entity.HasOne(d => d.Session)
-                    .WithMany(p => p.TblMiscFees)
-                    .HasForeignKey(d => d.SessionId)
-                    .HasConstraintName("FK_Tbl_MiscFee_Tbl_Session");
-
-                entity.HasOne(d => d.Student)
-                    .WithMany(p => p.TblMiscFees)
-                    .HasForeignKey(d => d.StudentId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Tbl_MiscFee_Tbl_Student");
             });
 
             modelBuilder.Entity<TblSession>(entity =>
             {
-                entity.HasKey(e => e.SessionId);
+                entity.HasKey(e => e.SessionId)
+                    .HasName("PK__Tbl_Sess__C9F49270E7787EBD");
 
                 entity.ToTable("Tbl_Session");
 
@@ -158,7 +146,7 @@ namespace Angular_NETCORE.Models
             modelBuilder.Entity<TblSessionSetting>(entity =>
             {
                 entity.HasKey(e => e.SessionSettingId)
-                    .HasName("PK__Tbl_Sess__CEFD079F5AC31CE2");
+                    .HasName("PK__Tbl_Sess__CEFD079FF6EDA2B6");
 
                 entity.ToTable("Tbl_SessionSettings");
 
@@ -175,13 +163,9 @@ namespace Angular_NETCORE.Models
 
             modelBuilder.Entity<TblStudent>(entity =>
             {
-                entity.HasKey(e => e.StudentId)
-                    .IsClustered(false);
+                entity.HasKey(e => e.StudentId);
 
                 entity.ToTable("Tbl_Student");
-
-                entity.HasIndex(e => e.AdmissionNo, "IX_Tbl_Student")
-                    .IsUnique();
 
                 entity.Property(e => e.StudentId).HasColumnName("StudentID");
 
@@ -196,8 +180,6 @@ namespace Angular_NETCORE.Models
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.CurrentClass).HasDefaultValueSql("((0))");
-
                 entity.Property(e => e.DateOfBirth)
                     .HasMaxLength(50)
                     .IsUnicode(false);
@@ -205,8 +187,7 @@ namespace Angular_NETCORE.Models
                 entity.Property(e => e.DateOfSlc)
                     .HasMaxLength(50)
                     .IsUnicode(false)
-                    .HasColumnName("DateOfSLC")
-                    .HasDefaultValueSql("('No')");
+                    .HasColumnName("DateOfSLC");
 
                 entity.Property(e => e.FatherCnic)
                     .HasMaxLength(100)
@@ -227,9 +208,7 @@ namespace Angular_NETCORE.Models
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.MonthlyFee)
-                    .HasColumnType("numeric(18, 0)")
-                    .HasDefaultValueSql("((0))");
+                entity.Property(e => e.MonthlyFee).HasColumnType("numeric(18, 0)");
 
                 entity.Property(e => e.MonthlyFeeUpdated).HasColumnName("monthlyFeeUpdated");
 
@@ -245,28 +224,16 @@ namespace Angular_NETCORE.Models
                 entity.Property(e => e.UpdatedDate)
                     .HasColumnType("date")
                     .HasColumnName("updatedDate");
-
-                entity.HasOne(d => d.ClassAdmitedNavigation)
-                    .WithMany(p => p.TblStudentClassAdmitedNavigations)
-                    .HasForeignKey(d => d.ClassAdmited)
-                    .HasConstraintName("FK_Tbl_Student_Tbl_Class1");
-
-                entity.HasOne(d => d.ClassLeftSchoolNavigation)
-                    .WithMany(p => p.TblStudentClassLeftSchoolNavigations)
-                    .HasForeignKey(d => d.ClassLeftSchool)
-                    .HasConstraintName("FK_Tbl_Student_Tbl_Class2");
-
-                entity.HasOne(d => d.CurrentClassNavigation)
-                    .WithMany(p => p.TblStudentCurrentClassNavigations)
-                    .HasForeignKey(d => d.CurrentClass)
-                    .HasConstraintName("FK_Tbl_Student_Tbl_Class");
             });
 
             modelBuilder.Entity<TblStudentMonthlyFee>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey(e => e.StudentMonthlyFeeId)
+                    .HasName("PK__Tbl_Stud__E71971E017B611EF");
 
                 entity.ToTable("Tbl_Student_MonthlyFee");
+
+                entity.Property(e => e.StudentMonthlyFeeId).HasColumnName("StudentMonthlyFeeID");
 
                 entity.Property(e => e.CreatedDate).HasColumnType("datetime");
 
@@ -275,25 +242,12 @@ namespace Angular_NETCORE.Models
                 entity.Property(e => e.SessionId).HasColumnName("SessionID");
 
                 entity.Property(e => e.StudentId).HasColumnName("StudentID");
-
-                entity.Property(e => e.StudentMonthlyFeeId)
-                    .ValueGeneratedOnAdd()
-                    .HasColumnName("StudentMonthlyFeeID");
-
-                entity.HasOne(d => d.Session)
-                    .WithMany()
-                    .HasForeignKey(d => d.SessionId)
-                    .HasConstraintName("FK_Tbl_Student_MonthlyFee_Tbl_Session");
-
-                entity.HasOne(d => d.Student)
-                    .WithMany()
-                    .HasForeignKey(d => d.StudentId)
-                    .HasConstraintName("FK_Tbl_Student_MonthlyFee_Tbl_Student");
             });
 
             modelBuilder.Entity<TblUser>(entity =>
             {
-                entity.HasKey(e => e.UserId);
+                entity.HasKey(e => e.UserId)
+                    .HasName("PK__Tbl_User__1788CCACFD498164");
 
                 entity.ToTable("Tbl_User");
 

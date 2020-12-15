@@ -1,0 +1,39 @@
+<div class="card col-lg-5">
+  <h4 class="card-header">Add New Class</h4>
+  <div class="card-body">
+    <form [formGroup]="addNewClassForm" (ngSubmit)="onSubmit()">
+      <!--<div class="form-group">
+        <label for="UserID">UserID</label>
+        <input #UserID type="text" formControlName="UserID" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.UserID.errors }" />
+        <div *ngIf="submitted && f.UserID.errors" class="invalid-feedback">
+          <div *ngIf="f.UserID.errors.required">UserID is required</div>
+        </div>
+      </div>-->
+
+      <div class="form-group">
+        <label for="ClassName">ClassName</label>
+        <input #ClassName type="text" formControlName="ClassName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.ClassName.errors }" />
+        <div *ngIf="submitted && f.ClassName.errors" class="invalid-feedback">
+          <div *ngIf="f.ClassName.errors.required">ClassName is required</div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="Priority">Priority</label>
+        <input #Priority type="text" formControlName="Priority" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.Priority.errors }" />
+        <div *ngIf="submitted && f.Priority.errors" class="invalid-feedback">
+          <div *ngIf="f.Priority.errors.required">Priority is required</div>
+        </div>
+      </div>
+
+      
+      <div class="form-group">
+        <button [disabled]="loading" class="btn btn-primary">
+          <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+          Add Class
+        </button>
+        
+      </div>
+    </form>
+  </div>
+</div>

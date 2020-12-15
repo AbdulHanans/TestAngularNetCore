@@ -27,6 +27,7 @@ export class StudentsComponent implements OnInit {
   }
 
   getClasses() {
+    this.classesD = [];
     this.serviceClasses.getClasses().subscribe((data) => {
       //this.classesD = data;
       this.obj = data;
@@ -38,6 +39,7 @@ export class StudentsComponent implements OnInit {
 
 
   getClass(cId: number) {
+    this.classD = [];
     
     this.serviceClasses.getClass(cId).subscribe((data) => {
       
@@ -111,6 +113,30 @@ export class StudentDetailsModel {
   LeftBy: number;
   UpdatedBy: number;
   AdmissionFee: number;
+}
 
-
+export class InsertStudentDetailsModel {
+  StudentId: number;
+  AdmissionNo: string;
+  StudentName: string;
+  FatherName: string;
+  FatherCnic: string;
+  DateOfBirth: Date;
+  MobileNumber: string;
+  LandLineNumber: string;
+  ClassAdmited: number;
+  CurrentClass: number;
+  MonthlyFee: number;
+  Address: string;
+  MiscellaneousFee: number;
+  ClassLeftSchool: number;
+  Slcissued: string;
+  DateOfSlc: Date;
+  UpdatedDate: Date;
+  DeletedBy: number;
+  MonthlyFeeUpdated: boolean;
+  SessionLeftSchool: number;
+  LeftBy: number;
+  UpdatedBy: number;
+  AdmissionFee: number;
 }
