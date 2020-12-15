@@ -74,8 +74,8 @@ export class PromoteStudentComponent implements OnInit {
       console.log('singleClass', this.classD);
       this.dtOptions = {
         pagingType: 'full_numbers',
-        pageLength: 5,
-        lengthMenu: [5, 15, 25],
+        pageLength: 10,
+        lengthMenu: [10, 25, 30],
         processing: true
       };
     }
